@@ -52,3 +52,7 @@ for (i in seq(1, 3+(nrow(films)-1)*2, 2)){
                              html_text2() else NA
     }
   }
+
+
+#### APPEND DATA DAY TO DAY TO A .CSV FILE ####
+write.table(films, "data/pelis_van_golem.csv", fileEncoding = "UTF-8", sep = ",", row.names = FALSE, col.names = FALSE, append = TRUE)
