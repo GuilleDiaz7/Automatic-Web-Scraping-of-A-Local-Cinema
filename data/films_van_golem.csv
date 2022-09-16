@@ -1,16 +1,16 @@
-"films","time1","time2","time3","time4"
-"El acusado","16:45","19:20","22:00",NA
-"Viaje al paraíso","17:00","19:45","22:00",NA
-"Viaje al paraíso (V.O.S.E.)","19:30",NA,NA,NA
-"42 segundos","17:15","22:00",NA,NA
-"El test","17:00","19:45","22:00",NA
-"Tres mil años esperándote","19:30","22:00",NA,NA
-"Fire of love","17:15","19:45","22:00",NA
-"Tadeo Jones 3. La tabla esmeralda","17:30",NA,NA,NA
-"La casa entre los cactus","16:45","18:30","20:30","22:30"
-"La vida padre","16:40","18:30","20:30","22:30"
-"El acusado","17:00","19:30","22:30",NA
-"Viaje al paraíso","17:15","19:45","22:30",NA
-"42 segundos","20:15","22:30",NA,NA
-"El test","19:45","22:30",NA,NA
-"Tadeo Jones 3. La tabla esmeralda","16:45","17:30","18:30",NA
+"date","films","time1","time2","time3","time4"
+"2022-09-15","El acusado","16:45","19:20","22:00",NA
+"2022-09-15","Viaje al paraíso","17:00","19:45","22:00",NA
+"2022-09-15","Viaje al paraíso (V.O.S.E.)","19:30",NA,NA,NA
+"2022-09-15","42 segundos","17:15","22:00",NA,NA
+"2022-09-15","El test","17:00","19:45","22:00",NA
+"2022-09-15","Tres mil años esperándote","19:30","22:00",NA,NA
+"2022-09-15","Fire of love","17:15","19:45","22:00",NA
+"2022-09-15","Tadeo Jones 3. La tabla esmeralda","17:30",NA,NA,NA
+"2022-09-16","La casa entre los cactus","16:45","18:30","20:30","22:30"
+"2022-09-16","La vida padre","16:40","18:30","20:30","22:30"
+"2022-09-16","El acusado","17:00","19:30","22:30",NA
+"2022-09-16","Viaje al paraíso","17:15","19:45","22:30",NA
+"2022-09-16","42 segundos","20:15","22:30",NA,NA
+"2022-09-16","El test","19:45","22:30",NA,NA
+"2022-09-16","Tadeo Jones 3. La tabla esmeralda","16:45","17:30","18:30",NA
