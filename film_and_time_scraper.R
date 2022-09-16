@@ -34,13 +34,13 @@ for (i in 1:4){
 z <- 0
 # The i iterator is for the films
 for (i in seq(1, 3+(nrow(films)-1)*2, 2)){
-  print(paste0("i es: ", i))
+  # print(paste0("i es: ", i))
   z <- z + 1
   if (z > nrow(films)) break
-  print(paste0("z es: ", z))
+  # print(paste0("z es: ", z))
   # The j iterator is for the film times
   for (j in 2:5){ 
-    print(paste0("j es: ", j))
+    # print(paste0("j es: ", j))
     css_tag <- paste0(".tabContenido table:nth-child(",i,") table table table td:nth-child(",j-1,") td .CajaVentasSup .horaXXXL .horaXXXL")
     films[[j]][[z]] <- if (length(
                                   html_data %>% 
@@ -53,6 +53,10 @@ for (i in seq(1, 3+(nrow(films)-1)*2, 2)){
     }
   }
 
+## Add a date column
+films <- films %>% 
+  mutate(date = Sys.Date()) %>% 
+  relocate(.before = films, date)
 
 #### APPEND DATA DAY TO DAY TO A .CSV FILE ####
 write.table(films, "data/films_van_golem.csv", fileEncoding = "UTF-8", sep = ",", row.names = FALSE, col.names = FALSE, append = TRUE)
