@@ -1,0 +1,26 @@
+#### WE ARE WORKING ON IT ####
+library(lubridate)
+library(dplyr)
+
+datos <- films_van_golem
+
+# TIDYVERSE
+
+session_count <- datos %>% 
+  rowwise() %>% 
+  mutate(
+    Sesiones = sum(!is.na(c_across(2:5)))
+  )
+
+# APPLY + dplyr
+
+count_na_functino <- function(x) sum(!is.na(x))
+
+datos %>% 
+  select(2:5) %>% 
+  mutate(
+    Sesiones = apply(., 1, count_na_functino)
+  ) %>% 
+  mutate(films = datos$films) %>% 
+  relocate(films, .before = time1)
+  
