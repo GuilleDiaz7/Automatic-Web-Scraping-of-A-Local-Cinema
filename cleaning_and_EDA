@@ -2,20 +2,22 @@ library(lubridate)
 library(dplyr)
 data <- films_van_golem
 
-#### TIDYVERSE ####
 
+#### Count the nº of sessions each films has per day ####
+
+## Full tidyverse
 # In this example across works well too
+
 data <- data %>% 
   rowwise() %>% 
   mutate(
     Sessions = sum(!is.na(c_across(2:5)))
   )
 
-
-#### APPLY + dplyr ####
+## Apply + dplyr ##
+# Count the nº of sessions each films has per day
 
 count_na_function <- function(x) sum(!is.na(x))
-
 data %>% 
   select(2:5) %>% 
   mutate(
