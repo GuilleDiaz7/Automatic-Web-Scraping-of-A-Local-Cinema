@@ -1,6 +1,7 @@
 library(lubridate)
 library(dplyr)
-data <- read.csv("https://raw.githubusercontent.com/GuilleDiaz7/Automatic-Web-Scraping-of-A-Local-Cinema/main/data/films_van_golem.csv")
+data <- read.csv("https://raw.githubusercontent.com/GuilleDiaz7/Automatic-Web-Scraping-of-A-Local-Cinema/main/data/films_van_golem.csv",
+               fileEncoding = "UTF-8")
 
 #### Count the nº of sessions each films has per day ####
 
