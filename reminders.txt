@@ -1,2 +1,0 @@
-1. TO COUNT THE NUMBER OF FILMS SHOWN IN THE CINEMA THROUGH ANY PERIOD OF TIME.
-    - In R you can use: map_dbl(n_distinct) to count the number of unique values in every column.
