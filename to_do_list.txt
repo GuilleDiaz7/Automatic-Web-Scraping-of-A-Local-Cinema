@@ -1,4 +1,4 @@
-1. Correct the script to scrape all times, without taking in account how many there are.
+1. Correct the script to scrape all times, without taking in account how many there are, is it possible?
 
 2. Scrape info from the other local cinema: Odeon Cines.
 
@@ -7,3 +7,9 @@
 4. Create a basic RMarkdown to explore the dataset (with parametrized data).
 
 5. Predict how many times a film will be shown.
+
+6. Calculate how many times a film has been shown.
+
+7. Calculate how many films are premiered each day.
+
+8. Plot data by time: global, month, weekday, weekday (working day or weekend -with and without friday).
