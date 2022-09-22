@@ -13,3 +13,7 @@
 7. Calculate how many films are premiered each day.
 
 8. Plot data by time: global, month, weekday, weekday (working day or weekend -with and without friday).
+
+9. Calculate V.O.S.E. rates.
+
+10. Monitor prices.
