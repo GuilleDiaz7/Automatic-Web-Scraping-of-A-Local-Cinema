@@ -1,3 +1,13 @@
+#### EXPLORATORY DATA ANALYSIS OF THE SCRAPED DATA ####
+#### BASIC CODE ####
+
+## Clean data memory
+rm(list = ls())
+rm("results_by_film_url_casillas") # Clean a particular R object
+
+## Remove plots
+dev.off(dev.list()["RStudioGD"]) # Apply dev.off() & dev.list()
+
 #### LOAD PACKAGES ####
 library(rvest)
 library(magrittr)
@@ -21,18 +31,18 @@ films_url <- tibble(
   films = html_data %>% 
             html_nodes("span.txtNegXL a") %>% 
             html_text2(),
-  urls = html_data %>% 
+  url = html_data %>% 
     html_nodes(".m5") %>% 
     html_attr("href")
 )
   
 films_url <- films_url %>% 
   mutate(
-  urls = paste0("https://www.golem.es", urls)
+  url = paste0("https://www.golem.es", url)
   )
 
 films <- films_url %>% 
-  select(-urls)
+  select(-url)
 
 ## Create the dataframe to store the time information
 for (i in 1:4){
@@ -71,16 +81,15 @@ films <- films %>%
 
 prueba <- left_join(films_url, films)
 mapeador <- tibble(
-  html_result = map(prueba$urls,
+  html_result = map(prueba$url,
                     ~ {
                       Sys.sleep(2)
                       .x %>% 
                         read_html()
                     }),
-  url = prueba$urls
+  url = prueba$url
 )
 
-# VAMOS BIEN, ES AÑADOR EL RESTO DE DATOS AQUÍ, DOY POR HECHO QUE NO CAMBIAN DE ORDEN
 results_by_film_url <- tibble(
   url = mapeador$url,
   cas_titulo = map(mapeador$html_result,
@@ -93,13 +102,68 @@ results_by_film_url <- tibble(
                       html_nodes(".txtNegL tr:nth-child(2) .txtLectura:nth-child(2)") %>% 
                       html_text2()
                     ),
-  
+  cas_director = map(mapeador$html_result,
+                   ~ .x %>% 
+                     html_nodes(".txtNegL tr:nth-child(3) .txtLectura:nth-child(1)") %>% 
+                     html_text2()
+  ),
+  dato_director = map(mapeador$html_result,
+                    ~ .x %>% 
+                      html_nodes(".txtNegL tr:nth-child(3) .txtLectura:nth-child(2)") %>% 
+                      html_text2()
+  ),
+  cas_length = map(mapeador$html_result,
+                   ~ .x %>% 
+                     html_nodes(".txtNegL tr:nth-child(4) .txtLectura:nth-child(1)") %>% 
+                     html_text2()
+  ),
+  dato_length = map(mapeador$html_result,
+                    ~ .x %>% 
+                      html_nodes(".txtNegL tr:nth-child(4) .txtLectura:nth-child(2)") %>% 
+                      html_text2()
+  ),
+  cas_country = map(mapeador$html_result,
+                   ~ .x %>% 
+                     html_nodes(".txtNegL tr:nth-child(5) .txtLectura:nth-child(1)") %>% 
+                     html_text2()
+  ),
+  dato_country = map(mapeador$html_result,
+                    ~ .x %>% 
+                      html_nodes(".txtNegL tr:nth-child(5) .txtLectura:nth-child(2)") %>% 
+                      html_text2()
+  )
   )
 
-results_by_film_url %>% 
-  unnest(casillas) %>% 
-  filter(casillas != "Ficha Técnica:")
+results_by_film_url <- results_by_film_url %>% 
+  unnest(2:9)
 
+df <- left_join(prueba, results_by_film_url)
+
+df <- df %>% 
+  pivot_longer(
+    cols = 8:15,
+    names_to = "casillas",
+    names_prefix = "cas_",
+    values_to = "datos"
+  ) %>% 
+  filter(
+    str_detect(casillas, "dato_")
+  ) %>% 
+  mutate(
+    casillas = str_remove(casillas, "dato_")
+  ) %>% 
+  pivot_wider(names_from = casillas, 
+              values_from = datos)
+
+df <- df %>% 
+  dplyr::rename(
+    original_title = titulo
+  ) %>% 
+  relocate(
+    date, .before = films
+  ) %>% 
+  select(-url)
 
 #### APPEND DATA DAY TO DAY TO A .CSV FILE ####
-write.table(films, "data/films_van_golem.csv", fileEncoding = "UTF-8", sep = ",", row.names = FALSE, col.names = FALSE, append = TRUE)
+write.table(df, "data/films_van_golem.csv", fileEncoding = "UTF-8", sep = ",", row.names = FALSE, col.names = F, append = T)
+
