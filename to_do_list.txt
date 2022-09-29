@@ -6,7 +6,7 @@
 
 4. Create a basic RMarkdown to explore the dataset (with parametrized data).
 
-5. Predict how many times a film will be shown.
+5. Predict how many times a film will be shown USING A POISSON REGRESSION.
 
 6. Calculate how many times a film has been shown.
 
@@ -17,3 +17,5 @@
 9. Calculate V.O.S.E. rates.
 
 10. Monitor prices.
+
+
