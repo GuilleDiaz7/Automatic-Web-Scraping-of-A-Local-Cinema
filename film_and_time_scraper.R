@@ -1,13 +1,3 @@
-#### EXPLORATORY DATA ANALYSIS OF THE SCRAPED DATA ####
-#### BASIC CODE ####
-
-## Clean data memory
-rm(list = ls())
-rm("results_by_film_url_casillas") # Clean a particular R object
-
-## Remove plots
-dev.off(dev.list()["RStudioGD"]) # Apply dev.off() & dev.list()
-
 #### LOAD PACKAGES ####
 library(rvest)
 library(magrittr)
